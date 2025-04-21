@@ -100,3 +100,17 @@ int	ft_atoi(const char *str)
 	n = check_overflows(n, (int)s);
 	return (n);
 }
+/*
+#include <stdio.h>
+
+int main(void)
+{
+    char    s[] = "-92233720368547000758000709645678600000000";
+    int     i1 = ft_atoi(s);
+    int     i2 = atoi(s);
+    
+    printf("my : |%d|\n", i1);
+    printf("std: |%d|\n", i2);
+    return (0);
+}
+*/
