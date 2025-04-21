@@ -41,7 +41,8 @@ static int	str_overflows(const char *str, int s)
  *            "unsigned long long int". 
  *        it covers the rest where n is calculted but can overflow when 
  *        casted to int type.
- * @param str : which is the resulting number of the input string.
+ * @param n : which is the resulting number of the input string.
+ * @param s : the signe of the resulting calculated number.
  * @return  -1 if positif overflow is detected.
  *           0  if negatif overflow is detected.
  *           (int)(s*n)  if str can be stored in "long long int".
