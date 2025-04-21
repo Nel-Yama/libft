@@ -51,7 +51,6 @@ static int	check_overflows(unsigned long long int n, int s)
 {
 	unsigned long long	max;
 	unsigned long long	min;
-	int					r;
 
 	max = 9223372036854775807;
 	min = (unsigned long long)9223372036854775807 + 1;
