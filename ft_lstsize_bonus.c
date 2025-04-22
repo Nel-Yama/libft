@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nel-yama <nassr.elyamani@gmail.com>        +#+  +:+       +#+        */
+/*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 00:50:38 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/04/20 19:22:30 by nel-yama         ###   ########.fr       */
+/*   Created: 2025/04/22 20:49:52 by nel-yama          #+#    #+#             */
+/*   Updated: 2025/04/22 20:49:53 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 
 /**
  * @brief - Counts the number of nodes in the list.

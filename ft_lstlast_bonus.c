@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nel-yama <nassr.elyamani@gmail.com>        +#+  +:+       +#+        */
+/*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 00:56:51 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/04/20 19:21:57 by nel-yama         ###   ########.fr       */
+/*   Created: 2025/04/22 20:49:19 by nel-yama          #+#    #+#             */
+/*   Updated: 2025/04/22 20:49:24 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft_bonus.h"
+#include "libft.h"
 
 /**
  * @brief - Returns the last node of the list.

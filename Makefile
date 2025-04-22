@@ -6,7 +6,7 @@
 #    By: nel-yama <nassr.elyamani@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/19 12:38:41 by nel-yama          #+#    #+#              #
-#    Updated: 2025/04/20 19:17:13 by nel-yama         ###   ########.fr        #
+#    Updated: 2025/04/22 20:45:47 by nel-yama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 NAME = libft.a
 HEADER = libft.h
-BONUS_HEADER = libft_bonus.h
 
 # Rules
 .PHONY: all clean fclean re bonus
@@ -50,13 +49,8 @@ bonus: $(OBJ_FILES) $(BONUS_OBJ)
 	@echo "Adding bonus objects to $(NAME)"
 	@ar rcs $(NAME) $^
 
-# Compile normal source files (depend on libft.h)
-$(OBJ_FILES): %.o: %.c $(HEADER)
-	@echo "Compiling $<"
-	@$(CC) $(CFLAGS) -I. -c $< -o $@
-
-# Compile bonus source files (depend on both headers)
-$(BONUS_OBJ): %.o: %.c $(HEADER) $(BONUS_HEADER)
+# Compile source files (depend on libft.h)
+%.o: %.c $(HEADER)
 	@echo "Compiling $<"
 	@$(CC) $(CFLAGS) -I. -c $< -o $@
 
