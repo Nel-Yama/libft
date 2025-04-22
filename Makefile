@@ -6,7 +6,7 @@
 #    By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/22 21:03:05 by nel-yama          #+#    #+#              #
-#    Updated: 2025/04/22 21:03:08 by nel-yama         ###   ########.fr        #
+#    Updated: 2025/04/22 22:21:49 by nel-yama         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC_FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
 BONUS_SRC = ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
-	ft_lstlast_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
+	ft_lstlast_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c \
+	ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c
 
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
