@@ -6,7 +6,7 @@
 /*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 20:48:37 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/04/22 20:48:55 by nel-yama         ###   ########.fr       */
+/*   Updated: 2025/04/22 21:33:22 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*tmp;
 
-	if (!new)
+	if (!lst || !new)
 		return ;
-	else
-		new->next = NULL;
 	if (!(*lst))
 	{
 		*lst = new;
