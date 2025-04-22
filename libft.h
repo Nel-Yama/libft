@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nel-yama <nassr.elyamani@gmail.com>        +#+  +:+       +#+        */
+/*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/03 21:59:07 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/04/22 20:42:30 by nel-yama         ###   ########.fr       */
+/*   Created: 2025/04/22 21:06:21 by nel-yama          #+#    #+#             */
+/*   Updated: 2025/04/22 21:08:15 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,4 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-
 #endif
