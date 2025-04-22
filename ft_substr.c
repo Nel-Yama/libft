@@ -31,7 +31,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	slen = ft_strlen(s);
 	if (start >= slen)
-		return (calloc(1, 1));
+		return (ft_calloc(1, 1));
 	if (len > slen - start)
 		len = slen - start;
 	subs = malloc((len + 1) * sizeof(char));
