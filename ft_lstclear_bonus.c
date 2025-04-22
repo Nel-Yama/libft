@@ -6,7 +6,7 @@
 /*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 21:58:56 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/04/22 22:17:35 by nel-yama         ###   ########.fr       */
+/*   Updated: 2025/04/22 23:33:41 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@
  * @param del: The address of the function used to delete the content 
  *             of the node.
  */
-void	 ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*tmp;
-
 
 	if (!lst || !(*lst) || !del)
 		return ;

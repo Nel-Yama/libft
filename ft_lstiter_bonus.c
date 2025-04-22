@@ -6,7 +6,7 @@
 /*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 22:19:40 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/04/22 22:27:15 by nel-yama         ###   ########.fr       */
+/*   Updated: 2025/04/22 23:32:25 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!lst || !f)
 		return ;
-
 }
