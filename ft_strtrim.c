@@ -18,7 +18,7 @@
  * @param c: The char to check if exist in s.
  * @return 1 if the string s contains character c, 0 otherwise.
  */
-static int	is_char_in_str(char const *s, char c)
+int	is_char_in_str(char const *s, char c)
 {
 	size_t	i;
 

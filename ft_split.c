@@ -80,7 +80,7 @@ static char	*substr_alloc(char const *s, char c, int *i, int *sl)
 	return (substr);
 }
 
-static void	free_split(char **split)
+void	free_split(char **split)
 {
 	int	i;
 
