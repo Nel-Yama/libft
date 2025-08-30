@@ -16,15 +16,22 @@
  * @brief - Outputs the string ’s’ to the specified file descriptor.
  * @param s: The string to output.
  * @param fd: The file descriptor on which to write.
- * @return None.
+ * @return number of printed characters.
  */
-void	ft_putstr_fd(char *s, int fd)
+int	ft_putstr_fd(char *s, int fd)
 {
+	char	*counter;
+
+	counter = s;
 	if (!s)
-		return ;
+	{
+		write(fd, "(null)", 6);
+		return (6);
+	}
 	while (*s)
 	{
 		write(fd, s, 1);
 		s++;
 	}
+	return (s - counter);
 }

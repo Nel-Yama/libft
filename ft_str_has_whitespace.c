@@ -16,13 +16,6 @@
  * @brief : checks if any of the chars of a string is a white space.
  * @param str : pointer to the string to browse.
  * @return : 1 if a white space is found, 0 otherwise.
- * space chars in ascii are as follow :
- * Space (' ', ASCII 32)
- * Tab ('\t', ASCII 9)
- * Line feed ('\n', ASCII 10)
- * Vertical tab ('\v', ASCII 11)
- * Form feed ('\f', ASCII 12)
- * Carriage return ('\r', ASCII 13)
  */
 int	ft_str_has_whitespace(const char *str)
 {

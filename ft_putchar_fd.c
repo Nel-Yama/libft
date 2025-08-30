@@ -18,7 +18,12 @@
  * @param fd: The file descriptor on which to write.
  * @return None
  */
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(int c, int fd)
 {
-	write(fd, &c, 1);
+	int				ret;
+	unsigned char	uc;
+
+	uc = (unsigned char)c;
+	ret = write(fd, &uc, 1);
+	return (ret);
 }
