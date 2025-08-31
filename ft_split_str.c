@@ -87,10 +87,10 @@ static char	**str_split(char **split, char *s, char *c, int *sub_str_nbr)
 			while (s[i] && !is_char_in_str(c, s[i]))
 				i++;
 		}
-		split[k] = (char *)malloc((i - j + 1) * sizeof(char));
+		split[k] = (char *)malloc((i - j) * sizeof(char));
 		if (!split[k])
 			return (free_split(split), NULL);
-		ft_strlcpy(split[k], s + j, i - j + 1);
+		ft_strlcpy(split[k], s + j, i - j);
 		k++;
 	}
 	return (split);

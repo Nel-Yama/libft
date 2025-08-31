@@ -6,7 +6,7 @@
 /*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 21:06:21 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/04/22 22:21:07 by nel-yama         ###   ########.fr       */
+/*   Updated: 2025/08/31 17:30:53 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "split.h"
 
 typedef struct s_list
 {
@@ -53,9 +54,7 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strtrim(char const *s1, char const *set);
 int		is_char_in_str(char const *s, char c);
 int		ft_str_has_whitespace(const char *str);
-void	free_split(char **split);
 char	**ft_split(char const *s, char c);
-char	**ft_split_str(char *s, char *c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

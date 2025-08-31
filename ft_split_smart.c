@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_str.c                                     :+:      :+:    :+:   */
+/*   ft_split_smart.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nel-yama <nel-yama@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 21:22:19 by nel-yama          #+#    #+#             */
-/*   Updated: 2025/08/28 21:22:19 by nel-yama         ###   ########.fr       */
+/*   Updated: 2025/08/31 17:17:34 by nel-yama         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,33 +25,31 @@
  * Returns:
  *   Dynamically allocated array of strings, or NULL on allocation failure
  */
-static char	**split_edge_case(char *s, char *c)
+static void	split_edge_case(t_split *split)
 {
-	char	**split;
-
-	if (!s[0])
+	if (!split->s[0])
 	{
-		split = (char **)malloc(sizeof(char *));
-		if (!split)
-			return (NULL);
-		split[0] = NULL;
-		return (split);
+		split->str_list = (char **)malloc(sizeof(char *));
+		if (!split->str_list)
+			return ;
+		split->str_list[0] = NULL;
+		return ;
 	}
-	if (!c[0])
+	if (!split->sep[0])
 	{
-		split = (char **)malloc(2 * sizeof(char *));
-		if (!split)
-			return (NULL);
-		split[0] = ft_strdup(s);
-		if (!split[0])
+		split->str_list = (char **)malloc(2 * sizeof(char *));
+		if (!split->str_list)
+			return ;
+		split->str_list[0] = ft_strdup(split->s);
+		if (!split->str_list[0])
 		{
-			free(split);
-			return (NULL);
+			free(split->str_list);
+			split->str_list = NULL;
+			return ;
 		}
-		split[1] = NULL;
-		return (split);
+		split->str_list[1] = NULL;
+		return ;
 	}
-	return (NULL);
 }
 
 /*
@@ -69,31 +67,21 @@ static char	**split_edge_case(char *s, char *c)
  *   The same array `split` on success, or NULL if allocation fails
  *   (frees split on failure)
  */
-static char	**str_split(char **split, char *s, char *c, int *sub_str_nbr)
+static char	**str_split(t_split *split)
 {
 	int	i;
-	int	j;
 	int	k;
 
 	i = 0;
 	k = 0;
-	while (k < *sub_str_nbr)
+	while (k < split->str_list_cnt)
 	{
-		while (s[i] && is_char_in_str(c, s[i]))
-			i++;
-		if (s[i])
-		{
-			j = i;
-			while (s[i] && !is_char_in_str(c, s[i]))
-				i++;
-		}
-		split[k] = (char *)malloc((i - j + 1) * sizeof(char));
-		if (!split[k])
-			return (free_split(split), NULL);
-		ft_strlcpy(split[k], s + j, i - j + 1);
+		allocate_sub_str(split, &i, k);
+		if (!split->str_list)
+			break ;
 		k++;
 	}
-	return (split);
+	return (split->str_list);
 }
 
 /*
@@ -110,31 +98,17 @@ static char	**str_split(char **split, char *s, char *c, int *sub_str_nbr)
  * Returns:
  *   Dynamically allocated array of strings, or NULL on allocation failure
  */
-static char	**str_list_alloc(char *s, char *c, int *sub_str_nbr)
+static char	**str_list_alloc(t_split *split)
 {
-	char	**str_list;
-	int		i;
-
-	*sub_str_nbr = 0;
-	i = 0;
-	while (s[i])
-	{
-		while (s[i] && is_char_in_str(c, s[i]))
-			i++;
-		if (s[i])
-		{
-			(*sub_str_nbr)++;
-			while (s[i] && !is_char_in_str(c, s[i]))
-				i++;
-		}
-	}
-	str_list = (char **)malloc(((*sub_str_nbr) + 1) * sizeof(char *));
-	if (!str_list)
+	count_substrings(split);
+	split->str_list = (char **)malloc(((split->str_list_cnt) + 1)
+			* sizeof(char *));
+	if (!split->str_list)
 		return (NULL);
-	str_list[*sub_str_nbr] = NULL;
-	if (!str_split(str_list, s, c, sub_str_nbr))
+	split->str_list[split->str_list_cnt] = NULL;
+	if (!str_split(split))
 		return (NULL);
-	return (str_list);
+	return (split->str_list);
 }
 
 /*
@@ -151,23 +125,23 @@ static char	**str_list_alloc(char *s, char *c, int *sub_str_nbr)
  *   A dynamically allocated array of strings (NULL-terminated),
  *   or NULL if allocation fails or input is NULL.
  */
-char	**ft_split_str(char *s, char *c)
+char	**ft_split_smart(char *s, char *sep)
 {
-	char	*trimmed_s;
-	char	**split;
-	int		sub_str_nbr;
+	t_split	split;
 
-	if (!s || !c)
+	if (!s || !sep)
 		return (NULL);
-	if (!s[0] || !c[0])
+	split.s = s;
+	split.sep = sep;
+	if (!split.s[0] || !split.sep[0])
 	{
-		split = split_edge_case(s, c);
-		return (split);
+		split_edge_case(&split);
+		return (split.str_list);
 	}
-	trimmed_s = ft_strtrim(s, c);
-	if (!trimmed_s)
+	split.trimmed_s = ft_strtrim(split.s, split.sep);
+	if (!split.trimmed_s)
 		return (NULL);
-	split = str_list_alloc(trimmed_s, c, &sub_str_nbr);
-	free(trimmed_s);
-	return (split);
+	str_list_alloc(&split);
+	free(split.trimmed_s);
+	return (split.str_list);
 }
