@@ -22,7 +22,6 @@ typedef struct s_split
 	int		str_list_cnt;
 }			t_split;
 
-int		is_escaped(char *s, int i);
 void	free_split(char **split);
 void	skip_separators(t_split *split, int *i);
 void	skip_quoted(t_split *split, int *i);

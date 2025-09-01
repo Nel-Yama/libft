@@ -18,20 +18,14 @@ void	skip_separators(t_split *split, int *i)
 		(*i)++;
 }
 
-int	is_escaped(char *s, int i)
-{
-	if (i > 0 && s[i - 1] == '\\')
-		return (1);
-	return (0);
-}
-
 void	skip_quoted(t_split *split, int *i)
 {
 	char	quote;
 
 	quote = split->s[*i];
 	(*i)++;
-	while (split->s[*i] && (split->s[*i] != quote || is_escaped(split->s, *i)))
+	while (split->s[*i] && (split->s[*i] != quote
+			|| ft_is_escaped(split->s, *i)))
 		(*i)++;
 	if (split->s[*i] == quote)
 		(*i)++;
@@ -39,7 +33,8 @@ void	skip_quoted(t_split *split, int *i)
 
 void	skip_unquoted(t_split *split, int *i)
 {
-	while (split->s[*i] && !is_char_in_str(split->sep, split->s[*i]))
+	while ((split->s[*i] && !is_char_in_str(split->sep, split->s[*i]))
+		&& (!ft_isquote(split->s[*i]) || ft_is_escaped(split->s, *i)))
 		(*i)++;
 }
 
@@ -56,7 +51,7 @@ void	count_substrings(t_split *split)
 			break ;
 		split->str_list_cnt++;
 		if ((split->s[i] == '"' || split->s[i] == '\'')
-			&& !is_escaped(split->s, i))
+			&& !ft_is_escaped(split->s, i))
 			skip_quoted(split, &i);
 		else
 			skip_unquoted(split, &i);

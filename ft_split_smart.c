@@ -145,3 +145,36 @@ char	**ft_split_smart(char *s, char *sep)
 	free(split.trimmed_s);
 	return (split.str_list);
 }
+/**
+#include <stdio.h>
+#include "libft.h"
+
+int main(void)
+{
+	//char *test_str = "hello 'this is'abc'quoted' simple";
+	char *test_str = "hello'this is'abc'quoted'simple";
+	//char *test_str = "hello 'world test' \"this \\\"is\\\" a test\" simple";
+//    0: [hello],
+//    1: [world test],
+//    2: [this \"is\" a test],
+//    3: [simple]
+
+	char *sep = " ";  // space as separator
+	printf("|%s|\n", test_str);
+	char **result = ft_split_smart(test_str, sep);
+
+	if (!result)
+	{
+		printf("Split failed\n");
+		return 1;
+	}
+	for (int i = 0; result[i] != NULL; i++)
+	printf("Token %d: [%s]\n", i, result[i]);
+
+	// Free memory
+	for (int i = 0; result[i] != NULL; i++)
+		free(result[i]);
+	free(result);
+	return 0;
+}
+**/
