@@ -16,9 +16,14 @@ void	skip_word(t_split *split, int *i, int *j, int *end)
 {
 	if (ft_isquote(split->s[*i]) && !ft_is_escaped(split->s, *i))
 	{
-		(*j)++;
 		skip_quoted(split, i);
+		(*j)++;
 		*end = *i - 1;
+		if (split->s[*i] == '\0')
+		{
+			(*j)--;
+			*end = *i;
+		}
 	}
 	else
 	{
