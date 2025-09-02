@@ -25,17 +25,18 @@ void	print_split(char **split)
 	i = 0;
 	while (split[i])
 	{
-		printf("Token %d: [%s]\n", i, result[i]);
+		printf("Token %d: [%s]\n", i, split[i]);
 		i++;
 	}
 }
-/**
+
 int	main(void)
 {
 	char	*str;
 	char	*sep;
 	char	**split;
 
+	sep = " ";
 	str = "hello 'this is'abc'quoted' simple";
 	printf("|%s|\n", str);
 	split = ft_split_smart(str, sep);
@@ -48,17 +49,17 @@ int	main(void)
 	print_split(split);
 	free_split(split);
 
-	str = "hello 'this is'abc'quoted' simple";
+	str = "''''";
 	printf("|%s|\n", str);
 	split = ft_split_smart(str, sep);
 	print_split(split);
 	free_split(split);
 
-	str = "hello 'this is'abc'quoted' simple";
+	str = "hello'this is'abc'quoted'";
 	printf("|%s|\n", str);
 	split = ft_split_smart(str, sep);
 	print_split(split);
 	free_split(split);	
 
 	return (0);
-}**/
+}

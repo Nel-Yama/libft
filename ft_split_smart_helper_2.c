@@ -19,7 +19,7 @@ void	skip_word(t_split *split, int *i, int *j, int *end)
 		skip_quoted(split, i);
 		(*j)++;
 		*end = *i - 1;
-		if (split->s[*i] == '\0')
+		if (!split->s[*i] && *i > 0 && !ft_isquote(split->s[*i - 1]))
 		{
 			(*j)--;
 			*end = *i;
