@@ -10,9 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libft.a
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -I.
 
 # Files
 SRC_FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
@@ -33,16 +34,9 @@ SRC_FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
 	ft_lstmap.c
 
-#BONUS_SRC = ft_lstadd.c ft_lstadd_front.c \
-#	ft_lstlast.c ft_lstnew.c ft_lstsize.c \
-#	ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-#	ft_lstmap.c
+OBJ_DIR = build
+OBJ_FILES = $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
-
-OBJ_FILES = $(SRC_FILES:.c=.o)
-#BONUS_OBJ = $(BONUS_SRC:.c=.o)
-
-NAME = libft.a
 HEADER = libft.h
 
 # Rules
@@ -56,20 +50,21 @@ $(NAME): $(OBJ_FILES)
 	@echo "Creating library $@"
 	@ar rcs $@ $^
 
-# Bonus rule (only includes bonus files)
-#bonus: $(OBJ_FILES) $(BONUS_OBJ)
-#	@echo "Adding bonus objects to $(NAME)"
-#	@ar rcs $(NAME) $^
+# Creating the build Directory if it doesn't exist
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
 
 # Compile source files (depend on libft.h)
-%.o: %.c $(HEADER)
+$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
 	@echo "Compiling $<"
-	@$(CC) $(CFLAGS) -I. -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Remove object files
 clean:
 	@echo "Cleaning object files..."
-	@rm -f $(OBJ_FILES) #$(BONUS_OBJ)
+	@rm -f $(OBJ_FILES)
+	@rm -rf $(OBJ_DIR)
 
 # Remove object files and the library
 fclean: clean

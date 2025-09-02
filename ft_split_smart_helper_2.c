@@ -37,7 +37,7 @@ void	allocate_sub_str(t_split *split, int *i, int k)
 		return ;
 	j = *i;
 	skip_word(split, i, &j, &end);
-	if (end - j > 0)
+	if (end - j + 1 > 0)
 		split->str_list[k] = (char *)malloc((end - j + 1) * sizeof(char));
 	if (!split->str_list[k])
 	{
@@ -45,6 +45,6 @@ void	allocate_sub_str(t_split *split, int *i, int k)
 		split->str_list = NULL;
 		return ;
 	}
-	if (end - j > 0)
+	if (end - j + 1 > 0)
 		ft_strlcpy(split->str_list[k], split->s + j, end - j + 1);
 }
