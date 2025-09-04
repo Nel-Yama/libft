@@ -18,18 +18,20 @@
  * @param
  * @return
  */
-int	ft_strcount_char(char *s, int c)
+int	ft_strcount_char(char *s, int len, int c)
 {
+	int	i;
 	int	count;
 
 	if (!s)
 		return (0);
 	count = 0;
-	while (*s)
+	i = 0;
+	while (i < len)
 	{
-		if (*s == c)
+		if (s[i] == c)
 			count++;
-		s++;
+		i++;
 	}
 	return (count);
 }

@@ -34,7 +34,7 @@ int		ft_isquote(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_is_escaped(char *s, int i);
-int		ft_strcount_char(char *s, int c);
+int		ft_strcount_char(char *s, int len, int c);
 int		ft_is_str_unique(const char *str);
 int		ft_str_has_whitespace(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
