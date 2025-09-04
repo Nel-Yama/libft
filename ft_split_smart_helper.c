@@ -49,11 +49,14 @@ void	count_substrings(t_split *split)
 		skip_separators(split, &i);
 		if (!split->s[i])
 			break ;
+		while (split->s[i] && !is_char_in_str(split->sep, split->s[i]))
+		{
+			if ((split->s[i] == '"' || split->s[i] == '\'')
+				&& !ft_is_escaped(split->s, i))
+				skip_quoted(split, &i);
+			else
+				skip_unquoted(split, &i);
+		}
 		split->str_list_cnt++;
-		if ((split->s[i] == '"' || split->s[i] == '\'')
-			&& !ft_is_escaped(split->s, i))
-			skip_quoted(split, &i);
-		else
-			skip_unquoted(split, &i);
 	}
 }

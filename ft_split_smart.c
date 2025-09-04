@@ -76,7 +76,7 @@ static char	**str_split(t_split *split)
 	k = 0;
 	while (k < split->str_list_cnt)
 	{
-		allocate_sub_str(split, &i, k);
+		create_sub_str(split, &i, k);
 		if (!split->str_list)
 			break ;
 		k++;

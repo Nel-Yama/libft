@@ -12,44 +12,62 @@
 
 #include "libft.h"
 
-void	skip_word(t_split *split, int *i, int *j, int *end)
+static void	allocate_sub_str(t_split *split, int k, int i, int j)
 {
-	if (ft_isquote(split->s[*i]) && !ft_is_escaped(split->s, *i))
+	int	quote;
+
+	quote = 0;
+	j = i;
+	while (split->s[i] && !is_char_in_str(split->sep, split->s[i]))
 	{
-		skip_quoted(split, i);
-		(*j)++;
-		*end = *i - 1;
-		if (!split->s[*i] && *i > 0 && !ft_isquote(split->s[*i - 1]))
-		{
-			(*j)--;
-			*end = *i;
-		}
+		if (ft_isquote(split->s[i]) && !ft_is_escaped(split->s, i))
+			skip_quoted(split, &i);
+		else
+			skip_unquoted(split, &i);
 	}
-	else
+	quote = ft_strcount_char(split->s + j, i - j, '\'');
+	quote += ft_strcount_char(split->s + j, i - j, '\"');
+	split->str_list[k] = (char *)malloc(i - j + 1 - quote);
+	if (!split->str_list[k])
 	{
-		skip_unquoted(split, i);
-		*end = *i;
+		free_split(split->str_list);
+		split->str_list = NULL;
 	}
 }
 
-void	allocate_sub_str(t_split *split, int *i, int k)
+static void	copy_sub_str(t_split *split, int k, int *i, int j)
+{
+	int	end;
+
+	end = *i;
+	while (split->s[*i] && !is_char_in_str(split->sep, split->s[*i]))
+	{
+		j = *i;
+		if (ft_isquote(split->s[*i]) && !ft_is_escaped(split->s, *i))
+		{
+			skip_quoted(split, i);
+			j++;
+			if (!split->s[*i] && *i > 0 && !ft_isquote(split->s[*i - 1]))
+				j--;
+			ft_strlcpy(split->str_list[k] + j - end - 1, split->s + j, *i - j);
+			end += 2;
+		}
+		else
+		{
+			skip_unquoted(split, i);
+			ft_strlcpy(split->str_list[k] + j - end, split->s + j, *i - j + 1);
+		}
+	}
+}
+
+void	create_sub_str(t_split *split, int *i, int k)
 {
 	int	j;
-	int	end;
 
 	skip_separators(split, i);
 	if (!split->s[*i])
 		return ;
 	j = *i;
-	skip_word(split, i, &j, &end);
-	if (end - j + 1 > 0)
-		split->str_list[k] = (char *)malloc((end - j + 1) * sizeof(char));
-	if (!split->str_list[k])
-	{
-		free_split(split->str_list);
-		split->str_list = NULL;
-		return ;
-	}
-	if (end - j + 1 > 0)
-		ft_strlcpy(split->str_list[k], split->s + j, end - j + 1);
+	allocate_sub_str(split, k, *i, j);
+	copy_sub_str(split, k, i, j);
 }

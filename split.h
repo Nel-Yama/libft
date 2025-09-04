@@ -27,7 +27,7 @@ void	skip_separators(t_split *split, int *i);
 void	skip_quoted(t_split *split, int *i);
 void	skip_unquoted(t_split *split, int *i);
 void	count_substrings(t_split *split);
-void	allocate_sub_str(t_split *split, int *i, int k);
+void	create_sub_str(t_split *split, int *i, int k);
 char	**ft_split_str(char *s, char *c);
 char	**ft_split_smart(char *s, char *sep);
 
